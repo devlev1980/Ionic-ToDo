@@ -6,20 +6,40 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import {LoginPage} from "../pages/login/login";
+import {RegisterPage} from "../pages/register/register";
+import {AngularFireModule} from '@angular/fire'
+import {AngularFireAuthModule} from '@angular/fire/auth'
+import {AngularFireDatabaseModule} from '@angular/fire/database'
+import {DashboardPage} from "../pages/dashboard/dashboard";
+import {FIREBASE_CREDENTIALS} from "./firebase.credentials";
+import {AddTodDoPage} from "../pages/add-tod-do/add-tod-do";
+
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    LoginPage,
+    RegisterPage,
+    DashboardPage,
+    AddTodDoPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(FIREBASE_CREDENTIALS),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    LoginPage,
+    RegisterPage,
+    DashboardPage,
+    AddTodDoPage
   ],
   providers: [
     StatusBar,

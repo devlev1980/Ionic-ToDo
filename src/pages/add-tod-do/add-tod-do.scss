@@ -1,0 +1,39 @@
+page-add-tod-do {
+
+}
+.addToDo{
+    background: linear-gradient(top,  #1A535C 0%,#5AD2F4 50%,#1A535C 100%);
+}
+form{
+  width: 500px;
+  height: 250px;
+  margin: 10px 10%;
+  border: 2px solid #1a3942;
+  padding: 10px 20px;
+  -webkit-box-shadow: 2px 8px 16px -1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 2px 8px 16px -1px rgba(0,0,0,0.75);
+  box-shadow: 2px 8px 16px -1px rgba(0,0,0,0.75);
+  background-color: #1a3942;
+
+
+  label{
+    color: #fff;
+  }
+  input{
+    //width: 250px !important;
+    font-size: 14px !important;
+  }
+  .actions{
+    text-align: right;
+  }
+  button{
+    margin: 15px 0  0 0 !important;
+    background-color: map_get($colors,light) !important;
+    color: #000 !important;
+    font-size: 14px !important;
+
+  }
+}
+
+
+

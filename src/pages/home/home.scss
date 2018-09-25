@@ -1,3 +1,45 @@
+@import "../../theme/variables";
+
 page-home {
 
+  .buttons{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    margin: auto;
+    margin-top: 50vh;
+  }
+  .buttons button{
+    flex: 1 1 auto;
+    margin-right: 5px;
+    background-color: map_get($colors,primary);
+  }
+  ion-content{
+    //background-image: url(../../assets/imgs/pexels-photo-938971.jpeg);
+    //-webkit-filter: blur(2px);
+    //-moz-filter: blur(2px);
+    //-o-filter: blur(2px);
+    //-ms-filter: blur(2px);
+    //filter: blur(2px);
+    background: linear-gradient(top,  #1A535C 0%,#5AD2F4 50%,#1A535C 100%);
+    z-index: 1;
+
+  }
+  .toolbar-background{
+    background-color:map_get($colors,primary);
+
+  }
+  .toolbar-title.toolbar-title-md{
+    color: #fff;
+  }
+
+  .scroll-content{
+    height:650px;
+    overflow: auto;
+  }
+
+
+}
+.back-button-icon-md {
+  color: #fff;
 }

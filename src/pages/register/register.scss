@@ -1,0 +1,26 @@
+page-register {
+
+}
+
+page-login {
+
+}
+.registerPage{
+
+  background: linear-gradient(top,  #1A535C 0%,#5AD2F4 50%,#1A535C 100%);
+}
+.input{
+  //background-color: map_get($colors,light);
+
+}
+ion-label{
+  color: #333;
+  font-weight: bold;
+}
+.toolbar-background{
+  background-color:map_get($colors,primary);
+
+}
+.toolbar-title.toolbar-title-md{
+  color: #fff;
+}

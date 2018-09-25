@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AngularFireAuth} from "@angular/fire/auth";
 import {AddTodDoPage} from "../add-tod-do/add-tod-do";
 import {AngularFireDatabase} from "@angular/fire/database";
-import {Observable} from "rxjs";
 
 /**
  * Generated class for the DashboardPage page.
@@ -19,10 +18,15 @@ import {Observable} from "rxjs";
 })
 export class DashboardPage {
 email: string;
-toDoItemsRef$: Observable<any[]>;
+toDoItemsRef$;
+list;
 // toToListRef$: FirebaseListObservable<ToDoList[]>
   constructor(public navCtrl: NavController, public navParams: NavParams,private fireAuth: AngularFireAuth,private db: AngularFireDatabase) {
     this.email = this.fireAuth.auth.currentUser.email;
+    this.toDoItemsRef$ = db.list('/todo-list').valueChanges().subscribe(data=>{
+      this.list = data;
+    });
+
   }
 
   ionViewDidLoad() {

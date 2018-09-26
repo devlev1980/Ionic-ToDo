@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Item} from "../../assets/models/item.interface";
 import {AngularFireDatabase} from "@angular/fire/database";
+import {Observable} from "rxjs";
 
 /**
  * Generated class for the AddTodDoPage page.
@@ -24,7 +25,8 @@ export class AddTodDoPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private db: AngularFireDatabase) {
-     this.toDoItemsRef$  = this.db.list('todo-list').valueChanges();
+     this.toDoItemsRef$  = this.db.database.ref('todo-list');
+
   }
 
   ionViewDidLoad() {

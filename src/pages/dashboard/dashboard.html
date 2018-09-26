@@ -12,14 +12,16 @@
 </ion-header>
 
 <ion-content padding class="dashboardPage">
-  <ul *ngFor="let i of list">
-    <li>{{i|json}}</li>
-  </ul>
-  <div class="card" style="width: 35rem;background-color: #1a3942" >
+  <!--<ul *ngFor="let i of list">-->
+    <!--<li>{{i|json}}</li>-->
+  <!--</ul>-->
+  <div class="card" style="width: 35rem;background-color: #1a3942" *ngFor="let item of list">
     <div class="card-body">
-      <h5 class="card-title">aAAA</h5>
+      <h2 class="card-title text-center">Title: {{item.title}}</h2>
       <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <p class="card-text">Status: {{item.status}}</p>
+      <p class="card-text">Date: {{item.date}}</p>
+
       <div class="actions">
         <button class="btn btn-primary editBtn">Edit</button>
         <button class="btn btn-danger deleteBtn">Delete</button>

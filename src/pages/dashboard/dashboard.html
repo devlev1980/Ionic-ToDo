@@ -7,15 +7,20 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Welcome {{email}}</ion-title>
-    <ion-buttons end> <button (click)="navigateToAddToDo()">  <ion-icon name='add'></ion-icon> </button> </ion-buttons>
+    <ion-buttons end>
+      <button (click)="navigateToAddToDo()">
+        <ion-icon name='add'></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding class="dashboardPage">
   <!--<ul *ngFor="let i of list">-->
-    <!--<li>{{i|json}}</li>-->
+  <!--<li>{{i|json}}</li>-->
   <!--</ul>-->
-  <div class="card" style="width: 35rem;background-color: #1a3942" *ngFor="let item of list">
+  <div class="card" style="width: 35rem;background-color: #1a3942" *ngFor="let item of toDoItemsRef$| async"
+      >
     <div class="card-body">
       <h2 class="card-title text-center">Title: {{item.title}}</h2>
       <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
@@ -23,8 +28,8 @@
       <p class="card-text">Date: {{item.date}}</p>
 
       <div class="actions">
-        <button class="btn btn-primary editBtn">Edit</button>
-        <button class="btn btn-danger deleteBtn">Delete</button>
+        <button class="btn btn-primary editBtn" (click)="onEdit(item)" >Edit</button>
+        <button class="btn btn-danger deleteBtn" (click)="onDelete(item)">Delete</button>
       </div>
 
 

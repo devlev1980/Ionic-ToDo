@@ -3,6 +3,8 @@ import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Item} from "../../assets/models/item.interface";
 import {AngularFireDatabase} from "@angular/fire/database";
 import {Observable} from "rxjs";
+import {FirebaseService} from "../../providers/firebase.service";
+import {DashboardPage} from "../dashboard/dashboard";
 
 /**
  * Generated class for the AddTodDoPage page.
@@ -24,7 +26,7 @@ export class AddTodDoPage {
   ];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              private db: AngularFireDatabase) {
+              private db: AngularFireDatabase,private fbs: FirebaseService) {
      this.toDoItemsRef$  = this.db.database.ref('todo-list');
 
   }
@@ -33,11 +35,17 @@ export class AddTodDoPage {
     console.log('ionViewDidLoad AddTodDoPage');
   }
 
-  onAddItem(item: Item) {
-    // console.log(item);
-    this.toDoItemsRef$.push(item);
-    this.toDoItem = {} as Item;
-    this.navCtrl.pop();
+  // onAddItem(item: Item) {
+  //   // console.log(item);
+  //   this.toDoItemsRef$.push(item);
+  //   this.toDoItem = {} as Item;
+  //   this.navCtrl.pop();
+  // }
+  onAddItem(item:Item){
+    this.fbs.addItem(item).then(ref=>{
+      this.navCtrl.pop(ref.key);
+     // console.log(ref.key)
+    })
   }
 
 }

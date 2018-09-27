@@ -1,8 +1,13 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {AngularFireAuth} from "@angular/fire/auth";
 import {AddTodDoPage} from "../add-tod-do/add-tod-do";
 import {AngularFireDatabase} from "@angular/fire/database";
+import {EditModalPage} from "../edit-modal/edit-modal";
+import {FirebaseService} from "../../providers/firebase.service";
+import {Observable} from "rxjs";
+import {Item} from "../../assets/models/item.interface";
+import {map} from "rxjs/operators";
 
 /**
  * Generated class for the DashboardPage page.
@@ -17,23 +22,49 @@ import {AngularFireDatabase} from "@angular/fire/database";
   templateUrl: 'dashboard.html',
 })
 export class DashboardPage {
-email: string;
-toDoItemsRef$;
-list;
-// toToListRef$: FirebaseListObservable<ToDoList[]>
-  constructor(public navCtrl: NavController, public navParams: NavParams,private fireAuth: AngularFireAuth,private db: AngularFireDatabase) {
-    this.email = this.fireAuth.auth.currentUser.email;
-    this.toDoItemsRef$ = db.list('/todo-list').valueChanges().subscribe(data=>{
-      this.list = data;
-    });
-
-  }
+  email: string;
+  toDoItemsRef$ : Observable<Item[]>;
+  list;
+  toDos
 
   ionViewDidLoad() {
-    // console.log('ionViewDidLoad DashboardPage');
+    console.log(this.navParams.get('item'));
   }
-  navigateToAddToDo(){
+
+// toToListRef$: FirebaseListObservable<ToDoList[]>
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private fireAuth: AngularFireAuth,
+              private db: AngularFireDatabase,
+              private fbs: FirebaseService,
+              private modal: ModalController) {
+    this.email = this.fireAuth.auth.currentUser.email;
+    // this.toDoItemsRef$ = db.list('/todo-list').valueChanges().subscribe(data => {
+    //   this.list = data;
+    // });
+    // this.toDos = db.list('/todo-list')
+    this.toDoItemsRef$ = this.fbs.getItems().snapshotChanges().pipe(
+      map(changes=>{
+        return changes.map(c=>({
+          key: c.payload.key, ...c.payload.val()
+        }));
+      })
+    )
+
+  }
+
+
+  navigateToAddToDo() {
     this.navCtrl.push(AddTodDoPage)
+  }
+
+  onEdit(item) {
+    this.modal.create(EditModalPage, {item: item}).present()
+  }
+
+  onDelete(id,item) {
+   // return this.db.list('todo-list').remove(item)
+
   }
 
 }

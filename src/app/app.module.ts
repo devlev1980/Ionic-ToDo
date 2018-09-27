@@ -14,6 +14,8 @@ import {AngularFireDatabaseModule} from '@angular/fire/database'
 import {DashboardPage} from "../pages/dashboard/dashboard";
 import {FIREBASE_CREDENTIALS} from "./firebase.credentials";
 import {AddTodDoPage} from "../pages/add-tod-do/add-tod-do";
+import {EditModalPage} from "../pages/edit-modal/edit-modal";
+import {FirebaseService} from "../providers/firebase.service";
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import {AddTodDoPage} from "../pages/add-tod-do/add-tod-do";
     LoginPage,
     RegisterPage,
     DashboardPage,
-    AddTodDoPage
+    AddTodDoPage,
+    EditModalPage
   ],
   imports: [
     BrowserModule,
@@ -39,11 +42,13 @@ import {AddTodDoPage} from "../pages/add-tod-do/add-tod-do";
     LoginPage,
     RegisterPage,
     DashboardPage,
-    AddTodDoPage
+    AddTodDoPage,
+    EditModalPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    FirebaseService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

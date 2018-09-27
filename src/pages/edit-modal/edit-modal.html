@@ -1,0 +1,42 @@
+<!--
+  Generated template for the AddTodDoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Edit Task</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="addToDo">
+  <form>
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" aria-describedby="emailHelp" placeholder="Enter Title" [(ngModel)]="item.title" name="title" value="{{item.title}}">
+    </div>
+    <div class="form-group">
+      <label for="date">Date</label>
+      <input type="date" class="form-control" id="date" placeholder="Enter Date" [(ngModel)]="item.date" name="date" value="{{item.date}}">
+    </div>
+    <div class="form-group">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">Status</label>
+        </div>
+        <select class="custom-select" id="inputGroupSelect01" [(ngModel)]="item.status" name="status" >
+          <option selected value="{{item.status}}">{{item.status}}</option>
+          <option *ngFor="let i of status" [value]="i" >{{i}}</option>
+
+        </select>
+      </div>
+    </div>
+    <div class="actions">
+      <button type="submit" class="btn btn-primary" (click)="onEditItem(item.key,item)">Submit</button>
+    </div>
+  </form>
+</ion-content>

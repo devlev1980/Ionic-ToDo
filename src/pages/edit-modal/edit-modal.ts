@@ -4,6 +4,7 @@ import {Item} from "../../assets/models/item.interface";
 import {AngularFireDatabase} from "@angular/fire/database";
 import {FirebaseService} from "../../providers/firebase.service";
 import {DashboardPage} from "../dashboard/dashboard";
+import {ToastService} from "../../providers/toast.service";
 
 /**
  * Generated class for the EditModalPage page.
@@ -22,7 +23,9 @@ item: Item;
   status = [
     'completed', 'in progress', 'removed'
   ];
-  constructor(public navCtrl: NavController, public navParams: NavParams,private db:AngularFireDatabase,private fbs: FirebaseService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private db:AngularFireDatabase,
+              private fbs: FirebaseService,
+              private toast: ToastService) {
   this.item =this.navParams.get('item');
   console.log(this.item)
 
@@ -35,6 +38,7 @@ item: Item;
   onEditItem(key,item){
     console.log(key,item);
     this.fbs.updateItem(key,item).then(()=>{
+      this.toast.show(`${item.title} has been updated successfully!`,3000);
       this.navCtrl.push(DashboardPage);
     }).catch(()=>{
       console.log('error');

@@ -20,7 +20,8 @@ export class FirebaseService {
   updateItem(key,item: Item){
     return this.toDos$.update(key,item)
   }
-  removeItem(item:Item){
+  removeItem(key){
+    return this.toDos$.remove(key)
   }
 
 }

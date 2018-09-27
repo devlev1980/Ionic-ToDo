@@ -8,6 +8,7 @@ import {FirebaseService} from "../../providers/firebase.service";
 import {Observable} from "rxjs";
 import {Item} from "../../assets/models/item.interface";
 import {map} from "rxjs/operators";
+import {ToastService} from "../../providers/toast.service";
 
 /**
  * Generated class for the DashboardPage page.
@@ -37,6 +38,7 @@ export class DashboardPage {
               private fireAuth: AngularFireAuth,
               private db: AngularFireDatabase,
               private fbs: FirebaseService,
+              private toast: ToastService,
               private modal: ModalController) {
     this.email = this.fireAuth.auth.currentUser.email;
     // this.toDoItemsRef$ = db.list('/todo-list').valueChanges().subscribe(data => {
@@ -63,7 +65,9 @@ export class DashboardPage {
   }
 
   onDelete(id,item) {
-   // return this.db.list('todo-list').remove(item)
+    this.fbs.removeItem(id).then(()=>{
+      this.toast.show(`${item.title} has been removed successfully!`,3000);
+    })
 
   }
 

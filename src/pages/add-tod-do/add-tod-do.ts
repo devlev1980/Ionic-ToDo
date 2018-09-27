@@ -5,6 +5,7 @@ import {AngularFireDatabase} from "@angular/fire/database";
 import {Observable} from "rxjs";
 import {FirebaseService} from "../../providers/firebase.service";
 import {DashboardPage} from "../dashboard/dashboard";
+import {ToastService} from "../../providers/toast.service";
 
 /**
  * Generated class for the AddTodDoPage page.
@@ -26,7 +27,7 @@ export class AddTodDoPage {
   ];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              private db: AngularFireDatabase,private fbs: FirebaseService) {
+              private db: AngularFireDatabase,private fbs: FirebaseService,private toast: ToastService) {
      this.toDoItemsRef$  = this.db.database.ref('todo-list');
 
   }
@@ -43,7 +44,8 @@ export class AddTodDoPage {
   // }
   onAddItem(item:Item){
     this.fbs.addItem(item).then(ref=>{
-      this.navCtrl.pop(ref.key);
+      this.toast.show(`${item.title} has been added successfully!`,3000);
+      this.navCtrl.push(DashboardPage,ref.key);
      // console.log(ref.key)
     })
   }

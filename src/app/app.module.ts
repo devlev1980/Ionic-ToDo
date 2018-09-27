@@ -16,6 +16,7 @@ import {FIREBASE_CREDENTIALS} from "./firebase.credentials";
 import {AddTodDoPage} from "../pages/add-tod-do/add-tod-do";
 import {EditModalPage} from "../pages/edit-modal/edit-modal";
 import {FirebaseService} from "../providers/firebase.service";
+import {ToastService} from "../providers/toast.service";
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import {FirebaseService} from "../providers/firebase.service";
     StatusBar,
     SplashScreen,
     FirebaseService,
+    ToastService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

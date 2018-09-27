@@ -25,14 +25,14 @@ import {ToastService} from "../../providers/toast.service";
 export class DashboardPage {
   email: string;
   toDoItemsRef$ : Observable<Item[]>;
-  list;
-  toDos
+  sortBy = ['Title','Date','Status'];
+  sorting: string;
+
 
   ionViewDidLoad() {
     console.log(this.navParams.get('item'));
   }
 
-// toToListRef$: FirebaseListObservable<ToDoList[]>
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private fireAuth: AngularFireAuth,
@@ -41,10 +41,7 @@ export class DashboardPage {
               private toast: ToastService,
               private modal: ModalController) {
     this.email = this.fireAuth.auth.currentUser.email;
-    // this.toDoItemsRef$ = db.list('/todo-list').valueChanges().subscribe(data => {
-    //   this.list = data;
-    // });
-    // this.toDos = db.list('/todo-list')
+
     this.toDoItemsRef$ = this.fbs.getItems().snapshotChanges().pipe(
       map(changes=>{
         return changes.map(c=>({
@@ -69,6 +66,17 @@ export class DashboardPage {
       this.toast.show(`${item.title} has been removed successfully!`,3000);
     })
 
+  }
+  onSortBy(event){
+   // this.toDoItemsRef$.pipe(
+   //   map(item=>{
+   //    item.forEach(i=>{
+   //       console.log(i.title);
+   //     });
+   //   })
+   //
+   // )
+    // console.log(this.sorting);
   }
 
 }

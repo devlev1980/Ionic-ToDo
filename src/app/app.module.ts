@@ -27,7 +27,7 @@ import {ToastService} from "../providers/toast.service";
     RegisterPage,
     DashboardPage,
     AddTodDoPage,
-    EditModalPage
+    EditModalPage,
   ],
   imports: [
     BrowserModule,

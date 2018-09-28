@@ -1,3 +1,5 @@
+@import "../../theme/custom-variables";
+
 page-dashboard {
   font-size: 16px;
 
@@ -6,66 +8,93 @@ page-dashboard {
 page-login {
 
 }
-.dashboardPage{
 
-  background: linear-gradient(top,  #1A535C 0%,#5AD2F4 50%,#1A535C 100%);
+.dashboardPage {
+
+  background: $bgGradient;
 }
-.input{
+
+.input {
   //background-color: map_get($colors,light);
 
 }
-ion-label{
+
+ion-label {
   color: #333;
   font-weight: bold;
 }
-.toolbar-background{
-  background-color:map_get($colors,primary);
+
+.toolbar-background {
+  background-color: map_get($colors, primary);
 
 }
-.toolbar-title.toolbar-title-ios{
+
+.toolbar-title.toolbar-title-ios {
   color: #fff;
 }
-.card{
-
+.card {
   margin: 30px auto;
   padding: 10px 20px;
-  -webkit-box-shadow: 2px 10px 32px -1px rgba(0,0,0,0.75);
-  -moz-box-shadow: 2px 10px 32px -1px rgba(0,0,0,0.75);
-  box-shadow: 2px 10px 32px -1px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 2px 10px 32px -1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px 10px 32px -1px rgba(0, 0, 0, 0.75);
+  box-shadow: 2px 10px 32px -1px rgba(0, 0, 0, 0.75);
   margin-bottom: 1rem;
-  .actions{
+  .actions {
     text-align: right;
   }
-  & h2, h6,p{
-    color: #fff;
+  & h2, h6, p {
+    color: $white;
   }
 }
-.dashboardPage{
+
+.dashboardPage {
   display: flex;
- margin:  auto;
+  margin: auto;
   justify-content: center;
 
-
 }
-ion-buttons button{
+
+ion-buttons button {
   background-color: transparent;
 
 }
-.actions button{
+
+.actions button {
   font-size: 16px;
 
 }
-.actions .btn-primary.editBtn{
-  background-color: #5AD2F4 !important;
+
+.actions .btn-primary.editBtn {
+  background-color: $bgEditButton !important;
   padding: 4.5px 20px;
   color: black;
 }
-.actions .btn-primary.deleteBtn{
-  background-color: #982649 !important;
+
+.actions .btn-primary.deleteBtn {
+  background-color: $bgDeleteButton !important;
 }
-ion-buttons button ion-icon{
-  color: #fff;
+
+ion-buttons button ion-icon {
+  color: $white;
   font-weight: bold;
   font-size: 26px;
 }
+
+.custom-select {
+  //padding: 0.375rem 1.75rem 0.375rem 1.75rem !important;
+  // height: calc(2.25rem + 6px) !important;
+  background-color: $bgSelect !important;
+  color: $white !important;
+  // border: none !important;
+  // outline: none !important;
+  width: 50% !important;
+  &.selected {
+    color: $white !important;
+  }
+}
+
+.sort {
+  display: none !important;
+}
+
 

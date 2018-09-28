@@ -17,6 +17,8 @@ import {AddTodDoPage} from "../pages/add-tod-do/add-tod-do";
 import {EditModalPage} from "../pages/edit-modal/edit-modal";
 import {FirebaseService} from "../providers/firebase.service";
 import {ToastService} from "../providers/toast.service";
+import {OrderByPipe} from "../pages/dashboard/orderBy.pipe";
+import {OrderModule} from "ngx-order-pipe";
 
 
 @NgModule({
@@ -27,14 +29,16 @@ import {ToastService} from "../providers/toast.service";
     RegisterPage,
     DashboardPage,
     AddTodDoPage,
-    EditModalPage
+    EditModalPage,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CREDENTIALS),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    OrderModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

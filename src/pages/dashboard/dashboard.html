@@ -16,23 +16,64 @@
 </ion-header>
 
 <ion-content padding class="dashboardPage">
-  <!--<ul *ngFor="let i of list">-->
-  <!--<li>{{i|json}}</li>-->
-  <!--</ul>-->
-  <div class="card" style="width: 35rem;background-color: #1a3942" *ngFor="let item of toDoItemsRef$| async"
-      >
-    <div class="card-body">
-      <h2 class="card-title text-center">Title: {{item.title}}</h2>
-      <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
-      <p class="card-text">Status: {{item.status}}</p>
-      <p class="card-text">Date: {{item.date}}</p>
 
-      <div class="actions">
-        <button class="btn btn-primary editBtn" (click)="onEdit(item)" >Edit</button>
-        <button class="btn btn-danger deleteBtn" (click)="onDelete(item.key,item)">Delete</button>
+  <!--<div class="input-group-prepend">-->
+    <!--<label class="input-group-text" for="inputGroupSelect01">Sort By</label>-->
+  <!--</div>-->
+  <!--<select class="custom-select mb-5" id="inputGroupSelect01" (change)="onSortBy()" [(ngModel)]="sortBy" name="sortBy">-->
+    <!--<option selected class="selected">Choose...</option>-->
+    <!--<option *ngFor="let i of sortByOptions" [value]="i" selected>{{i}}</option>-->
+  <!--</select>-->
+
+  <div class="form-group">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect02" >Sort By</label>
+      </div>
+      <select class="custom-select" id="inputGroupSelect02" [(ngModel)]="sortBy" name="sortBy" (change)="onSortBy($event)" style="height: calc(2.25rem + 6px) !important;">
+        <!--<option selected value="{{item.status}}">{{item.status}}</option>-->
+        <option *ngFor="let i of sortByOptions" [value]="i" >{{i}}</option>
+
+      </select>
+    </div>
+  </div>
+
+
+
+
+    <div class="card" style="width: 35rem;background-color: #1a3942"
+         *ngFor="let item of toDoItemsRef$|async" [class.sort]="isSorting">
+      <div class="card-body" >
+        <h2 class="card-title text-center">Title: {{item.title}}</h2>
+        <p class="card-text">Status: {{item.status}}</p>
+        <p class="card-text">Date: {{item.date}}</p>
+
+        <div class="actions">
+          <button class="btn btn-primary editBtn" (click)="onEdit(item)">Edit</button>
+          <button class="btn btn-danger deleteBtn" (click)="onDelete(item.key,item)">Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="width: 35rem;background-color: #1a3942"
+         *ngFor="let item of sortedList">
+      <div class="card-body" >
+        <h2 class="card-title text-center">Title: {{item.title}}</h2>
+        <p class="card-text">Status: {{item.status}}</p>
+        <p class="card-text">Date: {{item.date}}</p>
+
+        <div class="actions">
+          <button class="btn btn-primary editBtn" (click)="onEdit(item)">Edit</button>
+          <button class="btn btn-danger deleteBtn" (click)="onDelete(item.key,item)">Delete</button>
+        </div>
       </div>
 
 
     </div>
-  </div>
+
+
+
+
+
+
 </ion-content>

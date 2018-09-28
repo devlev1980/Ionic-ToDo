@@ -1,23 +1,40 @@
+@import "../../theme/layout";
+@import "../../theme/custom-variables";
+ion-item{
+  background: transparent !important;
+  color: $white !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-top: none !important;
+  //border-bottom: 1px solid red !important;
+  box-shadow: none !important;
 
-page-login {
 
 }
-.loginPage{
-
- background: linear-gradient(top,  #1A535C 0%,#5AD2F4 50%,#1A535C 100%);
-}
-.input{
-  //background-color: map_get($colors,light);
-
+ion-input{
+  border-bottom: #1a3942 !important;
 }
 ion-label{
- color: #333;
-  font-weight: bold;
+  color: $white !important;
 }
-.toolbar-background{
-  background-color:map_get($colors,primary);
 
-}
-.toolbar-title.toolbar-title-md{
-  color: #fff;
-}
+//
+//page-login {
+//
+//}
+//.loginPage{
+//
+// background: linear-gradient(top,  #1A535C 0%,#5AD2F4 50%,#1A535C 100%);
+//}
+
+//ion-label{
+// color: #333;
+//  font-weight: bold;
+//}
+//.toolbar-background{
+//  background-color:map_get($colors,primary);
+//
+//}
+//.toolbar-title.toolbar-title-md{
+//  color: #fff;
+//}

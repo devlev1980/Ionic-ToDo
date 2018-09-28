@@ -8,17 +8,13 @@ import {RegisterPage} from "../register/register";
   templateUrl: 'home.html'
 })
 export class HomePage {
-imageUrl = 'assets/imgs/pexels-photo-938971.jpeg';
+imageUrl = 'assets/imgs/typing.jpg';
 
   constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
 
   }
-
   signIn() {
-
       this.navCtrl.push(LoginPage)
-
-
   }
   signUp(){
     this.navCtrl.push(RegisterPage)

@@ -9,6 +9,7 @@ import {Observable} from "rxjs";
 import {Item} from "../../assets/models/item.interface";
 import {map} from "rxjs/operators";
 import {ToastService} from "../../providers/toast.service";
+import * as _ from 'underscore/underscore'
 
 /**
  * Generated class for the DashboardPage page.
@@ -24,9 +25,14 @@ import {ToastService} from "../../providers/toast.service";
 })
 export class DashboardPage {
   email: string;
-  toDoItemsRef$ : Observable<Item[]>;
-  list;
-  toDos
+  toDoItemsRef$: Observable<Item[]>;
+  sortByOptions = ['Title', 'Date', 'Status'];
+  options;
+  sortBy: string;
+  list: any [];
+  sortedList: any[];
+  isSorting: boolean = false;
+  isSortedList: boolean = false;
 
   ionViewDidLoad() {
     console.log(this.navParams.get('item'));
@@ -41,15 +47,18 @@ export class DashboardPage {
               private toast: ToastService,
               private modal: ModalController) {
     this.email = this.fireAuth.auth.currentUser.email;
+
+
     // this.toDoItemsRef$ = db.list('/todo-list').valueChanges().subscribe(data => {
     //   this.list = data;
     // });
     // this.toDos = db.list('/todo-list')
     this.toDoItemsRef$ = this.fbs.getItems().snapshotChanges().pipe(
-      map(changes=>{
-        return changes.map(c=>({
+      map(changes => {
+        return changes.map(c => ({
           key: c.payload.key, ...c.payload.val()
         }));
+
       })
     )
 
@@ -64,11 +73,29 @@ export class DashboardPage {
     this.modal.create(EditModalPage, {item: item}).present()
   }
 
-  onDelete(id,item) {
-    this.fbs.removeItem(id).then(()=>{
-      this.toast.show(`${item.title} has been removed successfully!`,3000);
+  onDelete(id, item) {
+    this.fbs.removeItem(id).then(() => {
+      this.toast.show(`${item.title} has been removed successfully!`, 3000);
     })
 
+  }
+
+  onSortBy(event) {
+    this.isSorting = true;
+    this.toDoItemsRef$.subscribe(data => {
+      this.list = data;
+      if (this.sortBy = 'Title') {
+        this.sortedList = _.sortBy(this.list,'title');
+      }
+      else if (this.sortBy = 'Status') {
+        this.sortedList = _.sortBy(this.list, 'status');
+      }
+     else if (this.sortBy = 'Date') {
+        this.sortedList = _.sortBy(this.list, 'date');
+      }
+
+
+    })
   }
 
 }

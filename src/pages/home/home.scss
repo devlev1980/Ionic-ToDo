@@ -1,7 +1,12 @@
 @import "../../theme/variables";
+@import "../../theme/custom-variables";
 
 page-home {
+  h2{
+    color: $white;
+    //font-size: 50px !important;
 
+  }
   .buttons{
     display: flex;
     flex-direction: row;
@@ -15,31 +20,28 @@ page-home {
     background-color: map_get($colors,primary);
   }
   ion-content{
-    //background-image: url(../../assets/imgs/pexels-photo-938971.jpeg);
-    //-webkit-filter: blur(2px);
-    //-moz-filter: blur(2px);
-    //-o-filter: blur(2px);
-    //-ms-filter: blur(2px);
-    //filter: blur(2px);
-    background: linear-gradient(top,  #1A535C 0%,#5AD2F4 50%,#1A535C 100%);
+    background: $bgGradient;
     z-index: 1;
-
   }
   .toolbar-background{
     background-color:map_get($colors,primary);
-
   }
   .toolbar-title.toolbar-title-md{
-    color: #fff;
+    color: $white;
   }
 
   .scroll-content{
     height:650px;
-    overflow: auto;
+    overflow: visible;
   }
-
-
 }
 .back-button-icon-md {
-  color: #fff;
+  color: $white;
 }
+.bgImage{
+  position: relative;
+  top:25%;
+  width: 100%;
+  filter:grayscale(90%);
+}
+

@@ -7,12 +7,18 @@
 </ion-header>
 
 <ion-content padding >
-  <ion-list>
-    <img src="{{imageUrl}}" alt="">
-  </ion-list>
+ <div class="bgImage">
+   <img src="{{imageUrl}}" alt="image">
+ </div>
+
 </ion-content>
 
 <ion-footer>
+  <!--<div class="row align-items-end" >-->
+    <!--<div class="col " >-->
+      <!--<h2 class="text-center">Welcome to my a simple ToDo-App</h2>-->
+    <!--</div>-->
+  <!--</div>-->
   <div class="buttons" padding>
     <button ion-button block color="primary" (click)="signIn()" >Sign In</button>
     <button ion-button block color="primary" (click)="signUp()" >Sign Up</button>

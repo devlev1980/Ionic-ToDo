@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Item} from "../../assets/models/item.interface";
 import {AngularFireDatabase} from "@angular/fire/database";
 import {FirebaseService} from "../../providers/firebase.service";
@@ -23,28 +23,27 @@ item: Item;
   status = [
     'completed', 'in progress', 'removed'
   ];
-  constructor(public navCtrl: NavController, public navParams: NavParams,private db:AngularFireDatabase,
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private db:AngularFireDatabase,
               private fbs: FirebaseService,
               private toast: ToastService) {
   this.item =this.navParams.get('item');
-  console.log(this.item)
-
 
   }
 
   ionViewDidLoad() {
-    // console.log(this.navParams.get('item'));
   }
   onEditItem(key,item){
-    console.log(key,item);
     this.fbs.updateItem(key,item).then(()=>{
       this.toast.show(`${item.title} has been updated successfully!`,3000);
       this.navCtrl.push(DashboardPage);
     }).catch(()=>{
       console.log('error');
     })
-
-
+  }
+  onCancel(){
+    this.navCtrl.pop()
   }
 
 }

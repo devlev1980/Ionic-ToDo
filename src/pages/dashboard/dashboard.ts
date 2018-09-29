@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {AngularFireAuth} from "@angular/fire/auth";
 import {AddTodDoPage} from "../add-tod-do/add-tod-do";
-import {AngularFireDatabase} from "@angular/fire/database";
 import {EditModalPage} from "../edit-modal/edit-modal";
 import {FirebaseService} from "../../providers/firebase.service";
 import {Observable} from "rxjs";
@@ -32,27 +31,19 @@ export class DashboardPage {
   list: any [];
   sortedList: any[];
   isSorting: boolean = false;
-  isSortedList: boolean = false;
 
   ionViewDidLoad() {
     console.log(this.navParams.get('item'));
   }
 
-// toToListRef$: FirebaseListObservable<ToDoList[]>
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private fireAuth: AngularFireAuth,
-              private db: AngularFireDatabase,
               private fbs: FirebaseService,
               private toast: ToastService,
               private modal: ModalController) {
     this.email = this.fireAuth.auth.currentUser.email;
 
-
-    // this.toDoItemsRef$ = db.list('/todo-list').valueChanges().subscribe(data => {
-    //   this.list = data;
-    // });
-    // this.toDos = db.list('/todo-list')
     this.toDoItemsRef$ = this.fbs.getItems().snapshotChanges().pipe(
       map(changes => {
         return changes.map(c => ({

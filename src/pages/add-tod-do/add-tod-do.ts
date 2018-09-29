@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Item} from "../../assets/models/item.interface";
 import {AngularFireDatabase} from "@angular/fire/database";
-import {Observable} from "rxjs";
 import {FirebaseService} from "../../providers/firebase.service";
 import {DashboardPage} from "../dashboard/dashboard";
 import {ToastService} from "../../providers/toast.service";

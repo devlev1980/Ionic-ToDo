@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Item} from "../../assets/models/item.interface";
-import {AngularFireDatabase} from "@angular/fire/database";
 import {FirebaseService} from "../../providers/firebase.service";
 import {DashboardPage} from "../dashboard/dashboard";
 import {ToastService} from "../../providers/toast.service";
@@ -25,7 +24,6 @@ item: Item;
   ];
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private db:AngularFireDatabase,
               private fbs: FirebaseService,
               private toast: ToastService) {
   this.item =this.navParams.get('item');

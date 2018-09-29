@@ -4,7 +4,7 @@ import {AngularFireAuth} from "@angular/fire/auth";
 import {AddTodDoPage} from "../add-tod-do/add-tod-do";
 import {EditModalPage} from "../edit-modal/edit-modal";
 import {FirebaseService} from "../../providers/firebase.service";
-import {Observable} from "rxjs";
+import {Observable} from "rxjs/Observable";
 import {Item} from "../../assets/models/item.interface";
 import {map} from "rxjs/operators";
 import {ToastService} from "../../providers/toast.service";

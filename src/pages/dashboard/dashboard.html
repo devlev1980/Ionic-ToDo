@@ -45,6 +45,7 @@
          *ngFor="let item of toDoItemsRef$|async" [class.sort]="isSorting">
       <div class="card-body" >
         <h2 class="card-title text-center">Title: {{item.title}}</h2>
+        <p class="card-text">Description: {{item.description}}</p>
         <p class="card-text">Status: {{item.status}}</p>
         <p class="card-text">Date: {{item.date}}</p>
 

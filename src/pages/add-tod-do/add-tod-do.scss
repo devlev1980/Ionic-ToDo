@@ -8,7 +8,7 @@ page-add-tod-do {
 }
 form{
   width: 30rem;
-  height: 22rem;
+  height: auto;
   margin: 10px 5%;
   border: 2px solid $bgSelect;
   padding: 10px 20px;
@@ -28,6 +28,7 @@ form{
     border-top:none !important;
     border-left:none !important;
     border-right:none !important;
+    color: #fff !important;
   }
   .actions{
     text-align: right;

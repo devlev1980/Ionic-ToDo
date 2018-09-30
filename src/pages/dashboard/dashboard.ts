@@ -45,7 +45,7 @@ export class DashboardPage {
     this.email = this.fireAuth.auth.currentUser.email;
 
     this.toDoItemsRef$ = this.fbs.getItems().snapshotChanges().pipe(
-      map(changes => {
+      map((changes:any) => {
         return changes.map(c => ({
           key: c.payload.key, ...c.payload.val()
         }));

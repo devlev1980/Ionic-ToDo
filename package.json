@@ -41,6 +41,7 @@
         "ionic-angular": "3.9.2",
         "ionic-plugin-keyboard": "^2.2.1",
         "ionicons": "3.0.0",
+        "json-server": "^0.14.0",
         "ngx-order-pipe": "^2.0.1",
         "promise-polyfill": "^8.1.0",
         "rxjs": "^6.3.2",

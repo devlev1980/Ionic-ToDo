@@ -5,6 +5,7 @@ import {AngularFireDatabase} from "@angular/fire/database";
 import {FirebaseService} from "../../providers/firebase.service";
 import {DashboardPage} from "../dashboard/dashboard";
 import {ToastService} from "../../providers/toast.service";
+import {ItemsService} from "../../providers/items.service";
 
 /**
  * Generated class for the AddTodDoPage page.
@@ -25,8 +26,12 @@ export class AddTodDoPage {
     'completed', 'in progress', 'removed'
   ];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-              private db: AngularFireDatabase,private fbs: FirebaseService,private toast: ToastService) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private db: AngularFireDatabase,
+              private fbs: FirebaseService,
+              private api: ItemsService,
+              private toast: ToastService) {
      this.toDoItemsRef$  = this.db.database.ref('todo-list');
 
   }
@@ -42,10 +47,20 @@ export class AddTodDoPage {
   //   this.navCtrl.pop();
   // }
   onAddItem(item:Item){
-    this.fbs.addItem(item).then(ref=>{
-      this.toast.show(`${item.title} has been added successfully!`,3000);
-      this.navCtrl.push(DashboardPage,ref.key);
-     // console.log(ref.key)
+    // this.fbs.addItem(item).then(ref=>{
+    //   this.toast.show(`${item.title} has been added successfully!`,3000);
+    //   this.navCtrl.push(DashboardPage,ref.key);
+    //  // console.log(ref.key)
+    // })
+
+    this.api.addItem(item).subscribe((res)=>{
+      if(res){
+        this.navCtrl.push(DashboardPage);
+        // this.toast.show(`${item.title} has been added successfully!`,3000);
+      }
+
+    },()=>{
+      this.toast.show(`Unexpected error!`,3000);
     })
   }
 

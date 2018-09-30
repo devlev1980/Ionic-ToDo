@@ -4,6 +4,7 @@ import {Item} from "../../assets/models/item.interface";
 import {FirebaseService} from "../../providers/firebase.service";
 import {DashboardPage} from "../dashboard/dashboard";
 import {ToastService} from "../../providers/toast.service";
+import {ItemsService} from "../../providers/items.service";
 
 /**
  * Generated class for the EditModalPage page.
@@ -25,6 +26,7 @@ item: Item;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private fbs: FirebaseService,
+              private api: ItemsService,
               private toast: ToastService) {
   this.item =this.navParams.get('item');
 
@@ -33,11 +35,20 @@ item: Item;
   ionViewDidLoad() {
   }
   onEditItem(key,item){
-    this.fbs.updateItem(key,item).then(()=>{
-      this.toast.show(`${item.title} has been updated successfully!`,3000);
-      this.navCtrl.push(DashboardPage);
-    }).catch(()=>{
-      console.log('error');
+    // this.fbs.updateItem(key,item).then(()=>{
+    //   this.toast.show(`${item.title} has been updated successfully!`,3000);
+    //   this.navCtrl.push(DashboardPage);
+    // }).catch(()=>{
+    //   console.log('error');
+    // })
+
+    this.api.editItem(key,item).subscribe((res)=>{
+      if (res) {
+        this.toast.show(`${item.title} has been updated successfully!`,3000);
+        this.navCtrl.push('Dashboard');
+      }
+    },()=>{
+      this.toast.show(`Unexpected error!`,3000);
     })
   }
   onCancel(){

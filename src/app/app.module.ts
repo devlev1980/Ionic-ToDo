@@ -19,6 +19,9 @@ import {FirebaseService} from "../providers/firebase.service";
 import {ToastService} from "../providers/toast.service";
 import {OrderByPipe} from "../pages/dashboard/orderBy.pipe";
 import {OrderModule} from "ngx-order-pipe";
+import {ItemsService} from "../providers/items.service";
+import {HttpClientModule} from "@angular/common/http";
+import {HttpModule} from "@angular/http";
 
 
 @NgModule({
@@ -30,7 +33,8 @@ import {OrderModule} from "ngx-order-pipe";
     DashboardPage,
     AddTodDoPage,
     EditModalPage,
-    OrderByPipe
+    OrderByPipe,
+
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,8 @@ import {OrderModule} from "ngx-order-pipe";
     AngularFireModule.initializeApp(FIREBASE_CREDENTIALS),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    OrderModule
+    OrderModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -55,6 +60,7 @@ import {OrderModule} from "ngx-order-pipe";
     SplashScreen,
     FirebaseService,
     ToastService,
+    ItemsService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

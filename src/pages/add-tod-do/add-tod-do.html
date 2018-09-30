@@ -9,18 +9,14 @@
   <ion-navbar>
     <ion-title>Add Task</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding class="addToDo">
-
     <form #addFrom="ngForm">
       <div class="form-group">
         <label for="title">Title</label>
         <input type="text" class="form-control" id="title" aria-describedby="emailHelp"  [(ngModel)]="toDoItem.title" name="title" required>
       </div>
-
       <div class="form-group">
         <label for="description">Description</label>
         <input type="text" class="form-control" id="description" aria-describedby="emailHelp"  [(ngModel)]="toDoItem.description" name="description" required>
@@ -37,7 +33,6 @@
           <select class="custom-select" id="inputGroupSelect01" [(ngModel)]="toDoItem.status" name="status" required>
             <option selected>Choose...</option>
             <option *ngFor="let i of status" [value]="i" >{{i}}</option>
-
           </select>
         </div>
       </div>
@@ -45,6 +40,4 @@
         <button type="submit" class="btn btn-primary" (click)="onAddItem(toDoItem)" [disabled]="!addFrom.form.valid">Submit</button>
       </div>
     </form>
-
-
 </ion-content>

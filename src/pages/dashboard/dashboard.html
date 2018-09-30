@@ -51,7 +51,7 @@
 
         <div class="actions">
           <button class="btn btn-primary editBtn" (click)="onEdit(item)">Edit</button>
-          <button class="btn btn-danger deleteBtn" (click)="onDelete(item.key,item)">Delete</button>
+          <button class="btn btn-danger deleteBtn" (click)="onDelete(item.id,item)">Delete</button>
         </div>
       </div>
     </div>
@@ -64,8 +64,8 @@
         <p class="card-text">Date: {{item.date}}</p>
 
         <div class="actions">
-          <button class="btn btn-primary editBtn" (click)="onEdit(item)">Edit</button>
-          <button class="btn btn-danger deleteBtn" (click)="onDelete(item.key,item)">Delete</button>
+          <button class="btn btn-primary editBtn" type="button" (click)="onEdit(item)">Edit</button>
+          <button class="btn btn-danger deleteBtn"  type="button" (click)="onDelete(item.id,item)">Delete</button>
         </div>
       </div>
 

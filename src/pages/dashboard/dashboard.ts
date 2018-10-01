@@ -25,7 +25,7 @@ import {ItemsService} from "../../providers/items.service";
 })
 export class DashboardPage {
   email: string;
-  toDoItems;
+  toDoItemsRef$:Observable<Item[]>;
   sortByOptions = ['Title', 'Date', 'Status'];
   options;
   sortBy: string;
@@ -34,8 +34,6 @@ export class DashboardPage {
   isSorting: boolean = false;
 
   ionViewDidLoad() {
-    console.log(this.navParams.get('item'));
-    // this.toDoItemsRef$ = this.api.getItems()
   }
 
   constructor(public navCtrl: NavController,
@@ -46,29 +44,16 @@ export class DashboardPage {
               private api: ItemsService,
               private modal: ModalController) {
     this.email = this.fireAuth.auth.currentUser.email;
-    this.getItems()
 
+    this.toDoItemsRef$ = this.fbs.getItems().snapshotChanges().pipe(
+      map((changes:any) => {
+        return changes.map(c => ({
+          key: c.payload.key, ...c.payload.val()
+        }));
 
-    // this.toDoItemsRef$ = this.fbs.getItems().snapshotChanges().pipe(
-    //   map((changes:any) => {
-    //     return changes.map(c => ({
-    //       key: c.payload.key, ...c.payload.val()
-    //     }));
-    //
-    //   })
-    // )
-
+      })
+    )
   }
-  getItems(){
-    this.api.getItems().subscribe(data=>{
-     this.toDoItems = data
-    })
-  }
-
-
-
-
-
 
   navigateToAddToDo() {
     this.navCtrl.push(AddTodDoPage)
@@ -79,23 +64,14 @@ export class DashboardPage {
   }
 
   onDelete(id, item) {
-
-    // this.fbs.removeItem(id).then(() => {
-    //   this.toast.show(`${item.title} has been removed successfully!`, 3000);
-    // })
-    this.api.removeItem(id).subscribe(()=>{
-      this.getItems();
-        this.toast.show(`${item.title} has been removed successfully!`, 3000);
-
-    },()=>{
-      this.toast.show(`Unexpected error!`,3000);
+    this.fbs.removeItem(id).then(() => {
+      this.toast.show(`${item.title} has been removed successfully!`, 3000);
     })
-
   }
 
   onSortBy(event) {
     this.isSorting = true;
-    this.toDoItems.subscribe(data => {
+    this.toDoItemsRef$.subscribe(data => {
       this.list = data;
 
       switch (this.sortBy) {

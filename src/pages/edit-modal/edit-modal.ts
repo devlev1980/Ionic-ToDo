@@ -35,21 +35,21 @@ item: Item;
   ionViewDidLoad() {
   }
   onEditItem(key,item){
-    // this.fbs.updateItem(key,item).then(()=>{
-    //   this.toast.show(`${item.title} has been updated successfully!`,3000);
-    //   this.navCtrl.push(DashboardPage);
-    // }).catch(()=>{
-    //   console.log('error');
-    // })
-
-    this.api.editItem(key,item).subscribe((res)=>{
-      if (res) {
-        this.toast.show(`${item.title} has been updated successfully!`,3000);
-        this.navCtrl.push('Dashboard');
-      }
-    },()=>{
-      this.toast.show(`Unexpected error!`,3000);
+    this.fbs.updateItem(key,item).then(()=>{
+      this.toast.show(`${item.title} has been updated successfully!`,3000);
+      this.navCtrl.push(DashboardPage);
+    }).catch(()=>{
+      console.log('error');
     })
+
+    // this.api.editItem(key,item).subscribe((res)=>{
+    //   if (res) {
+    //     this.toast.show(`${item.title} has been updated successfully!`,3000);
+    //     this.navCtrl.push('Dashboard');
+    //   }
+    // },()=>{
+    //   this.toast.show(`Unexpected error!`,3000);
+    // })
   }
   onCancel(){
     this.navCtrl.pop()

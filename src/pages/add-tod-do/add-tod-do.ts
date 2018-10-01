@@ -47,18 +47,13 @@ export class AddTodDoPage {
   //   this.navCtrl.pop();
   // }
   onAddItem(item:Item){
-    // this.fbs.addItem(item).then(ref=>{
-    //   this.toast.show(`${item.title} has been added successfully!`,3000);
-    //   this.navCtrl.push(DashboardPage,ref.key);
-    //  // console.log(ref.key)
-    // })
-
-    this.api.addItem(item).subscribe((res)=>{
-        this.navCtrl.push(DashboardPage);
-         this.toast.show(`${item.title} has been added successfully!`,3000);
-    },()=>{
-      this.toast.show(`Unexpected error!`,3000);
+    this.fbs.addItem(item).then(ref=>{
+      this.toast.show(`${item.title} has been added successfully!`,3000);
+      this.navCtrl.push(DashboardPage,ref.key);
+     // console.log(ref.key)
     })
+
+
   }
 
 }

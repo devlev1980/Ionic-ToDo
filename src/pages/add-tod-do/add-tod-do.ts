@@ -54,11 +54,8 @@ export class AddTodDoPage {
     // })
 
     this.api.addItem(item).subscribe((res)=>{
-      if(res){
         this.navCtrl.push(DashboardPage);
-        // this.toast.show(`${item.title} has been added successfully!`,3000);
-      }
-
+         this.toast.show(`${item.title} has been added successfully!`,3000);
     },()=>{
       this.toast.show(`Unexpected error!`,3000);
     })

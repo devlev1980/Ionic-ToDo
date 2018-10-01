@@ -21,7 +21,6 @@ import {OrderByPipe} from "../pages/dashboard/orderBy.pipe";
 import {OrderModule} from "ngx-order-pipe";
 import {ItemsService} from "../providers/items.service";
 import {HttpClientModule} from "@angular/common/http";
-import {HttpModule} from "@angular/http";
 
 
 @NgModule({

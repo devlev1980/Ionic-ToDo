@@ -25,7 +25,7 @@ import {ItemsService} from "../../providers/items.service";
 })
 export class DashboardPage {
   email: string;
-  toDoItemsRef$: Observable<Item[]>;
+  toDoItems;
   sortByOptions = ['Title', 'Date', 'Status'];
   options;
   sortBy: string;
@@ -60,7 +60,9 @@ export class DashboardPage {
 
   }
   getItems(){
-    this.toDoItemsRef$ = this.api.getItems()
+    this.api.getItems().subscribe(data=>{
+     this.toDoItems = data
+    })
   }
 
 
@@ -93,16 +95,19 @@ export class DashboardPage {
 
   onSortBy(event) {
     this.isSorting = true;
-    this.toDoItemsRef$.subscribe(data => {
+    this.toDoItems.subscribe(data => {
       this.list = data;
-      if (this.sortBy = 'Title') {
-        this.sortedList = _.sortBy(this.list,'title');
-      }
-      else if (this.sortBy = 'Status') {
-        this.sortedList = _.sortBy(this.list, 'status');
-      }
-     else if (this.sortBy = 'Date') {
-        this.sortedList = _.sortBy(this.list, 'date');
+
+      switch (this.sortBy) {
+        case  "Title":
+          this.sortedList = _.sortBy(this.list,'title');
+          break;
+        case "Status":
+          this.sortedList = _.sortBy(this.list, 'status');
+          break;
+        case "Date":
+          this.sortedList = _.sortBy(this.list, 'date');
+          break
       }
 
 

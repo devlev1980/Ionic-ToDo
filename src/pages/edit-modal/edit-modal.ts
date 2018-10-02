@@ -45,7 +45,7 @@ item: Item;
     this.api.editItem(key,item).subscribe((res)=>{
       if (res) {
         this.toast.show(`${item.title} has been updated successfully!`,3000);
-        this.navCtrl.push('Dashboard');
+        this.navCtrl.push(DashboardPage);
       }
     },()=>{
       this.toast.show(`Unexpected error!`,3000);

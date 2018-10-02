@@ -3,20 +3,10 @@ import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angula
 import {AngularFireAuth} from "@angular/fire/auth";
 import {AddTodDoPage} from "../add-tod-do/add-tod-do";
 import {EditModalPage} from "../edit-modal/edit-modal";
-import {FirebaseService} from "../../providers/firebase.service";
-import {Observable} from "rxjs/Observable";
 import {Item} from "../../assets/models/item.interface";
-import {map} from "rxjs/operators";
 import {ToastService} from "../../providers/toast.service";
 import * as _ from 'underscore/underscore'
 import {ItemsService} from "../../providers/items.service";
-
-/**
- * Generated class for the DashboardPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -25,23 +15,20 @@ import {ItemsService} from "../../providers/items.service";
 })
 export class DashboardPage {
   email: string;
-  toDoItems;
+  toDoItems: Item[];
   sortByOptions = ['Title', 'Date', 'Status'];
   options;
   sortBy: string;
-  list: any [];
-  sortedList: any[];
+  list;
+  sortedList: any[] = [];
   isSorting: boolean = false;
 
   ionViewDidLoad() {
-    console.log(this.navParams.get('item'));
-    // this.toDoItemsRef$ = this.api.getItems()
   }
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private fireAuth: AngularFireAuth,
-              private fbs: FirebaseService,
               private toast: ToastService,
               private api: ItemsService,
               private modal: ModalController) {
@@ -49,26 +36,13 @@ export class DashboardPage {
     this.getItems()
 
 
-    // this.toDoItemsRef$ = this.fbs.getItems().snapshotChanges().pipe(
-    //   map((changes:any) => {
-    //     return changes.map(c => ({
-    //       key: c.payload.key, ...c.payload.val()
-    //     }));
-    //
-    //   })
-    // )
-
   }
-  getItems(){
-    this.api.getItems().subscribe(data=>{
-     this.toDoItems = data
+
+  getItems() {
+    this.api.getItems().subscribe(data => {
+      this.toDoItems = data
     })
   }
-
-
-
-
-
 
   navigateToAddToDo() {
     this.navCtrl.push(AddTodDoPage)
@@ -80,38 +54,30 @@ export class DashboardPage {
 
   onDelete(id, item) {
 
-    // this.fbs.removeItem(id).then(() => {
-    //   this.toast.show(`${item.title} has been removed successfully!`, 3000);
-    // })
-    this.api.removeItem(id).subscribe(()=>{
+    this.api.removeItem(id).subscribe(() => {
       this.getItems();
-        this.toast.show(`${item.title} has been removed successfully!`, 3000);
+      this.toast.show(`${item.title} has been removed successfully!`, 3000);
 
-    },()=>{
-      this.toast.show(`Unexpected error!`,3000);
+    }, () => {
+      this.toast.show(`Unexpected error!`, 3000);
     })
-
   }
-
-  onSortBy(event) {
+  onSortBy() {
     this.isSorting = true;
-    this.toDoItems.subscribe(data => {
-      this.list = data;
-
+    this.toDoItems.forEach(() => {
       switch (this.sortBy) {
         case  "Title":
-          this.sortedList = _.sortBy(this.list,'title');
+          this.sortedList = _.sortBy(this.toDoItems, 'title');
           break;
         case "Status":
-          this.sortedList = _.sortBy(this.list, 'status');
+          this.sortedList = _.sortBy(this.toDoItems, 'status');
           break;
         case "Date":
-          this.sortedList = _.sortBy(this.list, 'date');
+          this.sortedList = _.sortBy(this.toDoItems, 'date');
           break
       }
 
-
-    })
+    });
   }
 
 }

@@ -7,13 +7,6 @@ import {DashboardPage} from "../dashboard/dashboard";
 import {ToastService} from "../../providers/toast.service";
 import {ItemsService} from "../../providers/items.service";
 
-/**
- * Generated class for the AddTodDoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-add-tod-do',
@@ -37,21 +30,9 @@ export class AddTodDoPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AddTodDoPage');
   }
 
-  // onAddItem(item: Item) {
-  //   // console.log(item);
-  //   this.toDoItemsRef$.push(item);
-  //   this.toDoItem = {} as Item;
-  //   this.navCtrl.pop();
-  // }
   onAddItem(item:Item){
-    // this.fbs.addItem(item).then(ref=>{
-    //   this.toast.show(`${item.title} has been added successfully!`,3000);
-    //   this.navCtrl.push(DashboardPage,ref.key);
-    //  // console.log(ref.key)
-    // })
 
     this.api.addItem(item).subscribe((res)=>{
         this.navCtrl.push(DashboardPage);

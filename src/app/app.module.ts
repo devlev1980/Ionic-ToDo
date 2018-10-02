@@ -17,11 +17,9 @@ import {AddTodDoPage} from "../pages/add-tod-do/add-tod-do";
 import {EditModalPage} from "../pages/edit-modal/edit-modal";
 import {FirebaseService} from "../providers/firebase.service";
 import {ToastService} from "../providers/toast.service";
-import {OrderByPipe} from "../pages/dashboard/orderBy.pipe";
 import {OrderModule} from "ngx-order-pipe";
 import {ItemsService} from "../providers/items.service";
 import {HttpClientModule} from "@angular/common/http";
-
 
 @NgModule({
   declarations: [
@@ -32,8 +30,6 @@ import {HttpClientModule} from "@angular/common/http";
     DashboardPage,
     AddTodDoPage,
     EditModalPage,
-    OrderByPipe,
-
   ],
   imports: [
     BrowserModule,
